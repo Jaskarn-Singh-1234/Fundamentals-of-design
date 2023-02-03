@@ -12,47 +12,47 @@ import java.util.*;
  * @author $ Jaskarn Singh
  */
 public class CardTrick {
-public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public static void main(String[] args) {
         
         Card[] hand = new Card[7];
-        Random random = new Random();
-        for (int i = 0; i < hand.length; i++)
-        {
+
+        for (int i = 0; i < hand.length; i++) {
             Card card = new Card();
-            card.setValue((int) Math.ceil(Math.random() * (13)));
-
-            card.setSuit(Card.SUITS[random.nextInt(4)]);
-            
+            int randomValue = (int) (Math.random() *  13);
+            int randomSuit = (int) (Math.random() *  4);
+            card.setValue(randomValue);
+            card.setSuit(Card.SUITS[randomSuit]);
             hand[i] = card;
-
+            //card.setValue(insert call to random number generator here)
+            // 
+            //card.setSuit(Card.SUITS[insert call to random number between 0-3 here])
+            // Hint: You can use Random -> random.nextInt(n) to get a random number between 0 and n-1 (inclusive)
+            //       Don't worry about duplicates at this point
         }
-
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the value for card 1-10 and 11 for jack, 12 for queen and 13 for King: ");
+        int userValue = input.nextInt();
+        System.out.print("Enter the value for suit ie. 1 for Hearts, 2 for Diamonds, 3 for Spade and 4 for Club: ");
+        String userSuit = Card.SUITS[input.nextInt()];
+        
+        for(int i = 0; i < hand.length; i++){
+            if(hand[i].getSuit() == userSuit && hand[i].getValue() ==userValue){
+                printInfo();
+            }else{
+                System.out.println("No match found");
+            }
+        }
         // insert code to ask the user for Card value and suit, create their card
-        Card userCard = new Card();
-        System.out.println("Enter your card value (between 1 and 13)");
-        userCard.setValue(scanner.nextInt());
-        System.out.println("Enter your card suit (between 1 and 4)");
-        userCard.setSuit(Card.SUITS[scanner.nextInt()]);
-
-        System.out.println("Your card is" + userCard.getSuit() + userCard.getValue());
+        // and search the hand here. 
+        // Hint: You can ask for values 1 to 10, and then
+        //       11 for jack, 12 for queen, etc. (remember arrays are 0-based though)
+        //       1 for Hearts, 2 for Diamonds, etc. (remember arrays are 0-based though)
+        // 
+        // Then loop through the cards in the array to see if there's a match.
         
-    for (Card hand1 : hand) {
-        if (userCard.getSuit() == hand1.getSuit() && userCard.getValue() == hand1.getValue()) {
-            printInfo();
-            break;
-        } else {
-            System.out.println("No match found");
-        }
+        // If the guess is successful, invoke the printInfo() method below.
+        
     }
-       
-           
-        }
-
-       
-       
-        
-    
 
     /**
      * A simple method to print out personal information. Follow the instructions to 
@@ -82,4 +82,6 @@ public static void main(String[] args) {
         
     
     }
-}
+           
+    }
+
